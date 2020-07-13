@@ -6,6 +6,9 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.humboo.game.split.model.Card;
+import com.humboo.game.split.model.Suit;
+
 @RestController
 public class SplitController {
 
@@ -16,4 +19,5 @@ public class SplitController {
 		hashMap.put("token", "sometoken");
 		return hashMap;
 	}
+	
 }
