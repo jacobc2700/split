@@ -31,7 +31,7 @@ public class Deck {
 		return this.cards;
 	}
 
-	// Implementing Fisher–Yates shuffle
+	// Implementing Fisher–Yates shuffle O(n)
 	public void shuffle()
 	{
 	  Random rnd = ThreadLocalRandom.current();

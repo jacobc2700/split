@@ -35,9 +35,9 @@ public class SplitApplication {
 		//Make a new deck and shuffle it
 		Deck deck = new Deck();
 		
-		for(int i = 0; i < deck.getCards().length; i++) {
-			System.out.println(deck.getCards()[i]);
-		}
+//		for(int i = 0; i < deck.getCards().length; i++) {
+//			System.out.println(deck.getCards()[i]);
+//		}
 		
 		deck.shuffle();
 		
