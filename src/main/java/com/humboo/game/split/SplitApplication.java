@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.humboo.game.split.model.Card;
 import com.humboo.game.split.model.Deck;
 import com.humboo.game.split.model.Match;
+import com.humboo.game.split.model.Player;
+import com.humboo.game.split.model.SplitGame;
 import com.humboo.game.split.model.Suit;
 
 @SpringBootApplication
@@ -14,36 +16,21 @@ public class SplitApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SplitApplication.class, args);
 		
-		//test to see if match works: WEAK
-		Card card1 = new Card(7, Suit.SPADES);
-		Card card2 = new Card(7, Suit.DIAMONDS);
-		Match match1 = new Match(card1, card2);
-		System.out.println(match1.getType());
+		Player player1 = new Player("Player 1");
+		Player player2 = new Player("Player 2");
+		Player player3 = new Player("Player 3");
 		
-		//STRONG
-		Card card3 = new Card(11, Suit.HEARTS);
-		Card card4 = new Card(11, Suit.DIAMONDS);
-		Match match2 = new Match(card3, card4);
-		System.out.println(match2.getType());
+		Player[] players = {player1, player2, player3};
 		
-		//PERFECT
-		Card card5 = new Card(13, Suit.CLUBS);
-		Card card6 = new Card(13, Suit.CLUBS);
-		Match match3 = new Match(card5, card6);
-		System.out.println(match3.getType());
+		SplitGame game = new SplitGame(3, players);
 		
-		//Make a new deck and shuffle it
-		Deck deck = new Deck();
+		game.startGame();
 		
-//		for(int i = 0; i < deck.getCards().length; i++) {
-//			System.out.println(deck.getCards()[i]);
-//		}
+		player1.printCards(game.getDeck());
 		
-		deck.shuffle();
+		System.out.println("----");
 		
-		for(int i = 0; i < deck.getCards().length; i++) {
-			System.out.println(deck.getCards()[i]);
-		}
+		player1.getPossibleMatches(game.getDeck());
 		
 	}
 
