@@ -26,11 +26,15 @@ public class SplitApplication {
 		
 		game.startGame();
 		
-		player1.printCards(game.getDeck());
+//		player1.printCards(game.getDeck());
 		
-		System.out.println("----");
+		System.out.println("---- possible matches ----");
 		
-		player1.getPossibleMatches(game.getDeck());
+//		player1.getPossibleMatches(game.getDeck());
+		
+		
+		
+		
 		
 	}
 

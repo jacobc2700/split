@@ -10,7 +10,10 @@ public class SplitGame {
 	//number which is the current index you are on in your deck
 	private int currentCardIndex = 0;
 	
-	private Stack<Card> discardPile;
+	//number which represents whose turn it is
+	private int playerTurn = 0;
+	
+	private Stack<Integer> discardPile;
 	
 	public SplitGame(int numberOfPlayers, Player[] players) {
 		if(numberOfPlayers <= 1 || numberOfPlayers >= 5) {
@@ -19,6 +22,7 @@ public class SplitGame {
 			this.numberOfPlayers = numberOfPlayers;
 			this.deck = new Deck();
 			this.players = players;
+			discardPile = new Stack<>();
 		}
 	}
 	
@@ -35,11 +39,22 @@ public class SplitGame {
 		//Give nine cards to all the players
 		for(int i = 0; i < numberOfPlayers; i++) {
 			for(int j = 0; j < 9; j++) {
-				players[i].addCard(currentCardIndex);
+				players[i].drawCard(currentCardIndex);
 				currentCardIndex++;
 			}
 		}
+		
+		//Put the next card as the first card for discard pile
+		discardPile.push(currentCardIndex);
+		currentCardIndex++;
 
+		nextTurn(playerTurn++);
+	}
+	
+	public void nextTurn(int playerTurn) {
+		players[playerTurn].promptTurn();
+		
+//		nextTurn(playerTurn++);
 	}
 	
 }
