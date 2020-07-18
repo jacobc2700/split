@@ -35,6 +35,10 @@ public class SplitGame {
 		}
 	}
 	
+	public Stack<Integer> getDiscardPile() {
+		return discardPile;
+	}
+	
 	public String getStatus() {
 		return status;
 	}

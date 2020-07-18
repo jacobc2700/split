@@ -1,6 +1,8 @@
 package com.humboo.game.split.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Player {
@@ -21,9 +23,25 @@ public class Player {
 		holdingCardIndexes = new ArrayList<>();
 	}
 	
+	public Match[] getMatches() {
+		return matches;
+	}
+	
 	//show everything for the player in a hashmap...
-	public Map<String, Object> showInfo() {
+	public Map<String, Object> getInfo(SplitGame game) {
+		Map<String, Object> hashMap = new HashMap<>();
 		
+//		Map<String, Object> matches = new HashMap<>();
+		
+		for(int i = 0; i < game.getPlayers().length; i++) {
+			hashMap.put("Matches for player " + game.getPlayers()[i].name, game.getPlayers()[i].getMatches());
+		}
+		
+		hashMap.put("Cards", holdingCardIndexes);
+		
+		hashMap.put("discardPile", game.getDiscardPile());
+		
+		return hashMap;
 	}
 	
 	public String getName() {

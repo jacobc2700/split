@@ -23,30 +23,6 @@ public class SplitController {
 	
 	GamePool gamePool = GamePool.getInstance();
 
-	@RequestMapping(value="/login")
-	public Map<String, Object> getAppToken()
-	{
-		Map<String, Object> hashMap = new HashMap<>();
-		hashMap.put("token", "sometoken");
-		return hashMap;
-	}
-	
-	@RequestMapping(value="/deck")
-	public Deck getDeck()
-	{
-		//Make a new deck and shuffle it
-		Deck deck = new Deck();
-		
-		deck.shuffle();
-//		
-//		for(int i = 0; i < deck.getCards().length; i++) {
-//			System.out.println(deck.getCards()[i]);
-//		}
-		Map<String, Object> hashMap = new HashMap<>();
-		hashMap.put("token", "sometoken");
-		return deck;
-	}
-	
 	@RequestMapping(value = "/game/create", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> createGame(@RequestBody NewGameForm gameForm) {
@@ -64,32 +40,25 @@ public class SplitController {
 //		return ;
 	}
 	
+//	@RequestMapping(value = "/game/players", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Map<String, SplitGame> getGames2() {
+//		return gamePool.getGames();
+//	}
+	
 	@RequestMapping(value = "/games", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, SplitGame> getGames2() {
 		return gamePool.getGames();
 	}
 	
-//	@RequestMapping(value = "/helperpost", method = RequestMethod.POST)
-//	public String postHelper(@RequestBody String[] names) {
-//		System.out.println(names);
-//		return "SUCCESS";
-//	}
 	
 	@RequestMapping(value = "/helper", method = RequestMethod.GET)
 	@ResponseBody
 	public Object helper() {
 		String [] names = { "name 1", "name 2", "name 3" };
 		return names;
-	}
-
-	
-//	@RequestMapping(value = "/{}/status", method = RequestMethod.GET)
-//	@ResponseBody
-//	public Map<String, SplitGame> getStatus() {
-//		return gamePool.getGames();
-//	}
-	
+	}	
 	
 
 	@RequestMapping(value = "/game/{id}/status", method = RequestMethod.GET)
@@ -104,9 +73,8 @@ public class SplitController {
 		return "SUCCESS";
 	}
 	
-	
-	
-	
-	
+	//Next step: make all the different routes
+	//Get all players/ all games
+	//Individual game/ individual player etc
 
 }
