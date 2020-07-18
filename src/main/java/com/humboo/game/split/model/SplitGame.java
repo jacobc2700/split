@@ -6,6 +6,7 @@ public class SplitGame {
 	private int numberOfPlayers;
 	private Player[] players;
 	private Deck deck;
+	private String name;
 	
 	//number which is the current index you are on in your deck
 	private int currentCardIndex = 0;
@@ -15,15 +16,29 @@ public class SplitGame {
 	
 	private Stack<Integer> discardPile;
 	
-	public SplitGame(int numberOfPlayers, Player[] players) {
+	public SplitGame(Player[] players) {
 		if(numberOfPlayers <= 1 || numberOfPlayers >= 5) {
 			return;
 		} else {
-			this.numberOfPlayers = numberOfPlayers;
+			this.numberOfPlayers = players.length;
 			this.deck = new Deck();
 			this.players = players;
 			discardPile = new Stack<>();
 		}
+	}
+	
+//	public SplitGame(String[] names) {
+//		Player[] players = new Player[names.length];
+//		
+//		for(int i = 0; i < names.length; i++) {
+//			players[i] = new Player(names[i]);
+//		}
+//		
+//		this(players);
+//	}
+	
+	public Player[] getPlayers() {
+		return players;
 	}
 	
 	//Getter for deck
@@ -48,13 +63,13 @@ public class SplitGame {
 		discardPile.push(currentCardIndex);
 		currentCardIndex++;
 
-		nextTurn(playerTurn++);
-	}
-	
-	public void nextTurn(int playerTurn) {
-		players[playerTurn].promptTurn();
-		
 //		nextTurn(playerTurn++);
 	}
+//	
+//	public void nextTurn(int playerTurn) {
+//		players[playerTurn].promptTurn();
+//		
+////		nextTurn(playerTurn++);
+//	}
 	
 }

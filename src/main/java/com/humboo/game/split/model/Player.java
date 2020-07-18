@@ -52,16 +52,16 @@ public class Player {
 		}
 	}
 	
-	public void promptTurn() {
-		Scanner sc = new Scanner(System.in);
-		isTurn = !isTurn;
-		while(isTurn) {
-			System.out.println("Your turn, " + name);
-			System.out.println("Choices for this turn, press the number please:");
-			
-		}
-		
-	}
+//	public void promptTurn() {
+//		Scanner sc = new Scanner(System.in);
+//		isTurn = !isTurn;
+//		while(isTurn) {
+//			System.out.println("Your turn, " + name);
+//			System.out.println("Choices for this turn, press the number please:");
+//			
+//		}
+//		
+//	}
 	
 	//Options for user each round:
 	

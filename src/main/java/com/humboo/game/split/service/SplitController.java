@@ -4,14 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.humboo.game.split.model.Card;
 import com.humboo.game.split.model.Deck;
+import com.humboo.game.split.model.GamePool;
+import com.humboo.game.split.model.Player;
 import com.humboo.game.split.model.Suit;
 
 @RestController
 public class SplitController {
+	
+	GamePool gamePool = GamePool.getInstance();
 
 	@RequestMapping(value="/login")
 	public Map<String, Object> getAppToken()
@@ -37,4 +43,12 @@ public class SplitController {
 		return deck;
 	}
 	
+	@RequestMapping(value = "/ex/foos", method = RequestMethod.POST)
+	@ResponseBody
+	public String postFoos() {
+		return gamePool.test();
+//		return "D";
+	}
+
+
 }
