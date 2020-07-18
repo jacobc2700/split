@@ -16,8 +16,14 @@ public class SplitGame {
 	
 	private Stack<Integer> discardPile;
 	
-	public SplitGame(Player[] players) {
-		if(numberOfPlayers <= 1 || numberOfPlayers >= 5) {
+	public SplitGame(String[] names) {
+		Player[] players = new Player[names.length];
+		
+		for(int i = 0; i < names.length; i++) {
+			players[i] = new Player(names[i]);
+		}
+		
+		if(players.length <= 1 || players.length >= 5) {
 			return;
 		} else {
 			this.numberOfPlayers = players.length;
@@ -26,16 +32,6 @@ public class SplitGame {
 			discardPile = new Stack<>();
 		}
 	}
-	
-//	public SplitGame(String[] names) {
-//		Player[] players = new Player[names.length];
-//		
-//		for(int i = 0; i < names.length; i++) {
-//			players[i] = new Player(names[i]);
-//		}
-//		
-//		this(players);
-//	}
 	
 	public Player[] getPlayers() {
 		return players;

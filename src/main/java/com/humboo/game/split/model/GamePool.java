@@ -24,23 +24,19 @@ public class GamePool {
   
     public String createNewGame(String name, String[] names) {
     	UUID uuid = UUID.randomUUID();
-    	
-    	
-
-    	
-    	Player[] players = new Player[names.length];
 		
-		for(int i = 0; i < names.length; i++) {
-			players[i] = new Player(names[i]);
-		}
-		
-		SplitGame newGame = new SplitGame(players);
+		SplitGame newGame = new SplitGame(names);
     	
     	games.put(uuid.toString(), newGame);
+    	
+    	newGame.startGame();
     	
     	return uuid.toString();
     }
     
+    public static Map<String, SplitGame> getGames() {
+    	return games;
+    }
     
     
     // private constructor restricted to this class itself 

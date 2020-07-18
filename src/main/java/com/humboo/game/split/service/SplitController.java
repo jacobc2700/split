@@ -12,6 +12,7 @@ import com.humboo.game.split.model.Card;
 import com.humboo.game.split.model.Deck;
 import com.humboo.game.split.model.GamePool;
 import com.humboo.game.split.model.Player;
+import com.humboo.game.split.model.SplitGame;
 import com.humboo.game.split.model.Suit;
 
 @RestController
@@ -43,11 +44,10 @@ public class SplitController {
 		return deck;
 	}
 	
-	@RequestMapping(value = "/ex/foos", method = RequestMethod.POST)
+	@RequestMapping(value = "/games", method = RequestMethod.GET)
 	@ResponseBody
-	public String postFoos() {
-		return gamePool.test();
-//		return "D";
+	public Map<String, SplitGame> getGames() {
+		return gamePool.getGames();
 	}
 
 
