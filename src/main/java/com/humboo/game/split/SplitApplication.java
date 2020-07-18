@@ -16,25 +16,6 @@ public class SplitApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SplitApplication.class, args);
-		
-		String[] players = {"player 1", "player 2", "player3"};
-		
-		GamePool gamePool = GamePool.getInstance();
-		
-		gamePool.createNewGame("Humboo's game", players);
-		
-//		game/.startGame();
-		
-//		player1.printCards(game.getDeck());
-		
-		System.out.println("---- possible matches ----");
-		
-//		player1.getPossibleMatches(game.getDeck());
-		
-		
-		
-		
-		
 	}
 
 }

@@ -14,6 +14,8 @@ public class SplitGame {
 	//number which represents whose turn it is
 	private int playerTurn = 0;
 	
+	private String status;
+	
 	private Stack<Integer> discardPile;
 	
 	public SplitGame(String[] names) {
@@ -32,6 +34,12 @@ public class SplitGame {
 			discardPile = new Stack<>();
 		}
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+//	private void setStatus()
 	
 	public Player[] getPlayers() {
 		return players;
@@ -59,6 +67,7 @@ public class SplitGame {
 		discardPile.push(currentCardIndex);
 		currentCardIndex++;
 
+		this.status = "Started game, " + players[playerTurn] + " going first";
 //		nextTurn(playerTurn++);
 	}
 //	

@@ -34,6 +34,8 @@ public class GamePool {
     	return uuid.toString();
     }
     
+//    public 
+    
     public static Map<String, SplitGame> getGames() {
     	return games;
     }

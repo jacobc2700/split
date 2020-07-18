@@ -21,6 +21,11 @@ public class Player {
 		holdingCardIndexes = new ArrayList<>();
 	}
 	
+	//show everything for the player in a hashmap...
+	public Map<String, Object> showInfo() {
+		
+	}
+	
 	public String getName() {
 		return name;
 	}
