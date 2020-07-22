@@ -71,7 +71,7 @@ public class SplitGame {
 		discardPile.push(currentCardIndex);
 		currentCardIndex++;
 
-		this.status = "Started game, " + players[playerTurn] + " going first";
+		this.status = "Started game, " + players[playerTurn].getName() + " going first";
 //		nextTurn(playerTurn++);
 	}
 //	

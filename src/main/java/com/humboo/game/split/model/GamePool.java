@@ -38,8 +38,7 @@ public class GamePool {
     
     public static Map<String, SplitGame> getGames() {
     	return games;
-    }
-    
+    }    
     
     // private constructor restricted to this class itself 
     private GamePool() 

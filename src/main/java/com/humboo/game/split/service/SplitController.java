@@ -1,7 +1,9 @@
 package com.humboo.game.split.service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,58 +25,42 @@ public class SplitController {
 	
 	GamePool gamePool = GamePool.getInstance();
 
-	@RequestMapping(value = "/game/create", method = RequestMethod.POST)
+	//@route POST /games
+	//@description Create a new game with a name and players
+	//@access Public
+	@RequestMapping(value = "/games", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> createGame(@RequestBody NewGameForm gameForm) {
-//		System.out.println(gamePool.createNewGame(name, names));
-		
 		Map<String, Object> hashMap = new HashMap<>();
-		
 		String id = gamePool.createNewGame(gameForm.gameName, gameForm.playerNames);
-		
 		hashMap.put("id", id);		
 		hashMap.put("status", gamePool.getGames().get(id).getStatus());
-		
 		return hashMap;
-		
-//		return ;
 	}
 	
-//	@RequestMapping(value = "/game/players", method = RequestMethod.GET)
-//	@ResponseBody
-//	public Map<String, SplitGame> getGames2() {
-//		return gamePool.getGames();
-//	}
+	//Get all the ids of games
+	@RequestMapping(value = "/games/ids", method = RequestMethod.GET)
+	@ResponseBody
+	public Set<String> getGameIds() {
+		return gamePool.getGames().keySet();
+	}
 	
+	//@route GET /games
+	//@description Get all the games
+	//@access Public
 	@RequestMapping(value = "/games", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, SplitGame> getGames2() {
+	public Map<String, SplitGame> getGames() {
 		return gamePool.getGames();
 	}
 	
-	
-	@RequestMapping(value = "/helper", method = RequestMethod.GET)
+	//@route GET /games/id
+	//@description Get info for one game
+	//@access Public
+	@RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Object helper() {
-		String [] names = { "name 1", "name 2", "name 3" };
-		return names;
-	}	
-	
-
-	@RequestMapping(value = "/game/{id}/status", method = RequestMethod.GET)
-	@ResponseBody
-	public String getStatus(@PathVariable("id") String id) {
-	    return "Gettin=" + id;
-	}
-
-	@RequestMapping(value = "/helperpost", method = RequestMethod.POST)
-	public String postHelper(@RequestBody String[] names) {
-		System.out.println(names);
-		return "SUCCESS";
+	public SplitGame getGameByID(@PathVariable("id") String id) {
+		return gamePool.getGames().get(id);
 	}
 	
-	//Next step: make all the different routes
-	//Get all players/ all games
-	//Individual game/ individual player etc
-
 }
