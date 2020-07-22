@@ -38,7 +38,9 @@ public class SplitController {
 		return hashMap;
 	}
 	
-	//Get all the ids of games
+	//@route GET /games/ids
+	//@description Get all the ids of the games
+	//@access Private for testing only
 	@RequestMapping(value = "/games/ids", method = RequestMethod.GET)
 	@ResponseBody
 	public Set<String> getGameIds() {
