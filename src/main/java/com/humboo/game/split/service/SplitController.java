@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.humboo.game.split.model.Player;
 import com.humboo.game.split.model.SplitGame;
 import com.humboo.game.split.model.Suit;
 
+@CrossOrigin
 @RestController
 public class SplitController {
 	
