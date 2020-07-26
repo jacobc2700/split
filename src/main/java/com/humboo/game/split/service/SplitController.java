@@ -68,4 +68,16 @@ public class SplitController {
 		return gamePool.getGames().get(id);
 	}
 	
+	
+	//@route GET /games/games_id/player/player_id
+	//@description Get info for one player in one game
+	//@access Public
+	@RequestMapping(value = "/games/{gameId}/player/{playerId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getPlayerInfo(@PathVariable("gameId") String gameId, @PathVariable("playerId") String playerId) {
+//		return gamePool.getGames().get(gameId).getPlayerByID(playerId);
+		Map<String, Object> hashMap = new HashMap<>();
+//		hashMap.put("name")
+		//Finish this
+	}
 }

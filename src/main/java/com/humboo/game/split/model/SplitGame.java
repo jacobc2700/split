@@ -49,6 +49,10 @@ public class SplitGame {
 		return players;
 	}
 	
+	public Player getPlayerByID(int id) {
+		return players[id];
+	}
+	
 	//Getter for deck
 	public Deck getDeck() {
 		return deck;
