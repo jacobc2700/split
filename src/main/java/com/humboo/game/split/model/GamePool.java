@@ -25,7 +25,7 @@ public class GamePool {
     public String createNewGame(String name, String[] names) {
     	UUID uuid = UUID.randomUUID();
 		
-		SplitGame newGame = new SplitGame(names);
+		SplitGame newGame = new SplitGame(names, name);
     	
     	games.put(uuid.toString(), newGame);
     	

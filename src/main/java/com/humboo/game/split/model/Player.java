@@ -80,6 +80,19 @@ public class Player {
 		}
 	}
 	
+	public Map<String, Object> getHoldingCards(Deck deck) {
+		Map<String, Object> hashMap = new HashMap<>();
+		
+		
+		Card[] cards = new Card[holdingCardIndexes.size()];
+		
+		for(int i = 0; i < holdingCardIndexes.size(); i++) {
+//			cards[i] = deck.getCards()[i];
+			hashMap.put(Integer.toString(i), deck.getCards()[i]);
+		}
+		return hashMap;
+	}
+	
 	//Function that lists all the possible matches made from holding cards
 	//Lists all the versions of Matches
 	public void getPossibleMatches(Deck deck) {

@@ -8,6 +8,19 @@ public class SplitGame {
 	private Deck deck;
 	private String name;
 	
+	private int availableActions = 0;
+	
+	private static final int DRAW_FROM_DISCARD_PILE = 0B0000001;
+	private static final int DRAW_FROM_REGULAR_PILE = 0B0000010;
+	private static final int MAKE_MATCH = 0B0000100;
+	
+//	private static final int DRAW_FROM_REGULAR_PILE = 0B0001000;
+//	private static final int DRAW_FROM_REGULAR_PILE = 0B0010000;
+////	private static final int DRAW_FROM_REGULAR_PILE = 0B0001000;
+//	4, 8, 16, 32...
+	
+	
+	
 	//number which is the current index you are on in your deck
 	private int currentCardIndex = 0;
 	
@@ -18,7 +31,7 @@ public class SplitGame {
 	
 	private Stack<Integer> discardPile;
 	
-	public SplitGame(String[] names) {
+	public SplitGame(String[] names, String name) {
 		Player[] players = new Player[names.length];
 		
 		for(int i = 0; i < names.length; i++) {
@@ -30,11 +43,32 @@ public class SplitGame {
 		} else {
 			this.numberOfPlayers = players.length;
 			this.deck = new Deck();
+			this.name = name;
 			this.players = players;
+			
+			//when game starts, only 2 options for player:
+			//draw from discard or draw from regular pile
+			this.availableActions = DRAW_FROM_DISCARD_PILE + DRAW_FROM_REGULAR_PILE;
 			discardPile = new Stack<>();
 		}
 	}
 	
+	public int getAvailableActions() {
+		return availableActions;
+	}
+	
+
+//		AVILABLE action = 3 == 0000011
+//		0000001		
+//		if (action & #0000001)
+//			// private static final int DRAW_FROM_DISCARD_PILE = 1;
+//		else if (action & 0000010)
+//			// private static final int DRAW_FROM_REGULAR_PILE = 2;
+//		else if (action & 0000010)
+//			//private static final int DRAW_FROM_DISCARD_PILE = 4;
+			
+			
+	//}
 	public int getCurrentPlayerTurn() {
 		return playerTurn;
 	}
