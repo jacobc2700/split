@@ -40,6 +40,10 @@ public class SplitController {
 		hashMap.put("status", gamePool.getGames().get(id).getStatus());
 		hashMap.put("players", gamePool.getGames().get(id).getPlayers());
 		hashMap.put("deck", gamePool.getGames().get(id).getDeck());
+		hashMap.put("name", gamePool.getGames().get(id).getName());
+		hashMap.put("current card index", gamePool.getGames().get(id).getCurrentCardIndex());
+		hashMap.put("player turn", gamePool.getGames().get(id).getCurrentPlayerTurn());
+//		current card index, player turn
 		return hashMap;
 	}
 	
@@ -82,7 +86,12 @@ public class SplitController {
 		Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("name", currentPlayer.getName());
 		hashMap.put("id", currentPlayer.getID());
-		
-		//id, matches, holdingCardIndexes, isTurn, scoreSheet
+		hashMap.put("matches", currentPlayer.getMatches());
+		hashMap.put("holding card indexes", currentPlayer.getHoldingCardIndexes());
+		hashMap.put("is turn", currentPlayer.isTurn());
+		hashMap.put("score sheet", currentPlayer.getScoreSheet());
+//		hashMap.put
+		//, isTurn, scoreSheet
+		return hashMap;
 	}
 }

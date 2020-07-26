@@ -26,8 +26,18 @@ public class Player {
 		holdingCardIndexes = new ArrayList<>();
 	}
 	
+//	getter/setter lay out nicely soon
+	
+	public boolean isTurn() {
+		return isTurn;
+	}
+	
 	public String getID() {
 		return id;
+	}
+	
+	public ScoreSheet getScoreSheet() {
+		return scoreSheet;
 	}
 	
 	public Match[] getMatches() {

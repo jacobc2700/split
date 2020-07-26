@@ -35,6 +35,18 @@ public class SplitGame {
 		}
 	}
 	
+	public int getCurrentPlayerTurn() {
+		return playerTurn;
+	}
+	
+	public int getCurrentCardIndex() {
+		return currentCardIndex;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	public Stack<Integer> getDiscardPile() {
 		return discardPile;
 	}

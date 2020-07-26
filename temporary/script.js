@@ -77,6 +77,7 @@ $(document).ready(function () {
   function createGameCallback(response) {
     // alert('Game ID: ' + response.id);
     $('#listGameID').html(response.id);
+
     $('#gamePlayers').html(response.players.toString());
     $('#createGame').hide();
     // getGameIds(response);
