@@ -1,4 +1,21 @@
 $(document).ready(function () {
+  // Get all game IDs and display them in div tag
+  function getGameIds() {
+    callAjax('http://localhost:8080/games/ids', 'GET', null, gameIdCallback);
+  }
+
+  function gameIdCallback(response) {
+    let longHTMLStr = '';
+
+    for (var i = 0; i < response.length; i++) {
+      //   $('#listGameIDs').append('<p>' + response[i] + '</p>');
+      longHTMLStr += '<p>' + response[i] + '</p>';
+    }
+    // alert(type of response);
+    $('#listGameIDs').html(longHTMLStr);
+    // document.getElementById('listGameIDs').innerHTML = response;
+  }
+
   $('#req').click(function () {
     alert('click');
     $.ajax({
@@ -37,28 +54,28 @@ $(document).ready(function () {
     });
   });
 
+  /* Create a new game */
+  $('#createGame').click(function () {
+    callAjax(
+      'http://localhost:8080/games',
+      'POST',
+      getNewGameForm(),
+      createGameCallback
+    );
+  });
+
   function getNewGameForm() {
     let gameName = $('#gameName').val();
-    if (gameName == '')
-      // check for spaces
-      alert('no game name');
-    // get playmer names... dynamically add textbox for players...
-    // for now just split string
     let playerNames = $('#players').val();
     let players = playerNames.split(',');
-
     let gameForm = { gameName: gameName, playerNames: players };
     return JSON.stringify(gameForm);
   }
 
-  function callback(response) {
-    alert(response.id);
+  function createGameCallback(response) {
+    alert('Game ID: ' + response.id);
+    getGameIds(response);
   }
-
-  /* Create a new game */
-  $('#createGame').click(function () {
-    callAjax('http://localhost:8080/games', 'POST', getNewGameForm(), callback);
-  });
 
   /* Make a request */
   /*
