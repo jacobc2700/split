@@ -34,10 +34,12 @@ public class SplitController {
 	@ResponseBody
 	public Map<String, Object> createGame(@RequestBody NewGameForm gameForm) {
 		Map<String, Object> hashMap = new HashMap<>();
+		
 		String id = gamePool.createNewGame(gameForm.gameName, gameForm.playerNames);
 		hashMap.put("id", id);		
 		hashMap.put("status", gamePool.getGames().get(id).getStatus());
 		hashMap.put("players", gamePool.getGames().get(id).getPlayers());
+		hashMap.put("deck", gamePool.getGames().get(id).getDeck());
 		return hashMap;
 	}
 	
@@ -76,8 +78,11 @@ public class SplitController {
 	@ResponseBody
 	public Map<String, Object> getPlayerInfo(@PathVariable("gameId") String gameId, @PathVariable("playerId") String playerId) {
 //		return gamePool.getGames().get(gameId).getPlayerByID(playerId);
+		Player currentPlayer = gamePool.getGames().get(gameId).getPlayerByID(playerId);
 		Map<String, Object> hashMap = new HashMap<>();
-//		hashMap.put("name")
-		//Finish this
+		hashMap.put("name", currentPlayer.getName());
+		hashMap.put("id", currentPlayer.getID());
+		
+		//id, matches, holdingCardIndexes, isTurn, scoreSheet
 	}
 }

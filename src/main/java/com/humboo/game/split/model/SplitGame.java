@@ -22,7 +22,7 @@ public class SplitGame {
 		Player[] players = new Player[names.length];
 		
 		for(int i = 0; i < names.length; i++) {
-			players[i] = new Player(names[i], i);
+			players[i] = new Player(names[i], String.valueOf(i));
 		}
 		
 		if(players.length <= 1 || players.length >= 5) {
@@ -49,8 +49,8 @@ public class SplitGame {
 		return players;
 	}
 	
-	public Player getPlayerByID(int id) {
-		return players[id];
+	public Player getPlayerByID(String id) {
+		return players[Integer.valueOf(id)];
 	}
 	
 	//Getter for deck
