@@ -37,6 +37,7 @@ public class SplitController {
 		String id = gamePool.createNewGame(gameForm.gameName, gameForm.playerNames);
 		hashMap.put("id", id);		
 		hashMap.put("status", gamePool.getGames().get(id).getStatus());
+		hashMap.put("players", gamePool.getGames().get(id).getPlayers());
 		return hashMap;
 	}
 	

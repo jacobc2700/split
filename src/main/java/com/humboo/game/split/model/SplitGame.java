@@ -22,7 +22,7 @@ public class SplitGame {
 		Player[] players = new Player[names.length];
 		
 		for(int i = 0; i < names.length; i++) {
-			players[i] = new Player(names[i]);
+			players[i] = new Player(names[i], i);
 		}
 		
 		if(players.length <= 1 || players.length >= 5) {

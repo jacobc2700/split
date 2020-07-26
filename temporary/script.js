@@ -1,8 +1,10 @@
+let gameID = '';
+
 $(document).ready(function () {
-  // Get all game IDs and display them in div tag
-  function getGameIds() {
-    callAjax('http://localhost:8080/games/ids', 'GET', null, gameIdCallback);
-  }
+  //   // Get all game IDs and display them in div tag
+  //   function getGameIds() {
+  //     callAjax('http://localhost:8080/games/ids', 'GET', null, gameIdCallback);
+  //   }
 
   function gameIdCallback(response) {
     let longHTMLStr = '';
@@ -73,8 +75,11 @@ $(document).ready(function () {
   }
 
   function createGameCallback(response) {
-    alert('Game ID: ' + response.id);
-    getGameIds(response);
+    // alert('Game ID: ' + response.id);
+    $('#listGameID').html(response.id);
+    $('#gamePlayers').html(response.players.toString());
+    $('#createGame').hide();
+    // getGameIds(response);
   }
 
   /* Make a request */

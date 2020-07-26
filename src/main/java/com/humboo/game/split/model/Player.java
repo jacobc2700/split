@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class Player {
 	private String name;
 	
+	private int id;
+	
 	//matches that were already placed down and counted for points
 	private Match[] matches;
 	
@@ -18,8 +20,9 @@ public class Player {
 	
 	private ScoreSheet scoreSheet;
 	
-	public Player(String name) {
+	public Player(String name, int id) {
 		this.name = name;
+		this.id = id;
 		holdingCardIndexes = new ArrayList<>();
 	}
 	
