@@ -36,19 +36,6 @@ public class Card {
 		}
 	}
 	
-//	public String getMatchType(Card cardToCompare) {
-//		if(rank == cardToCompare.getRank() && _suit.equals(cardToCompare.getSuit())) {
-//			return "Perfect";
-//		}
-//		if(rank == cardToCompare.getRank() && getColor().equals(cardToCompare.getColor())) {
-//			return "Strong";
-//		}
-//		if(rank == cardToCompare.getRank() && !getColor().equals(cardToCompare.getColor())) {
-//			return "Weak";
-//		}
-//		return "No Match";
-//	}
-	
 	public String toString() {
 		return "Rank: " + rank + "| Suit: " + String.valueOf(_suit) + " | Color: " + getColor();
 	}
