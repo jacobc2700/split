@@ -71,6 +71,15 @@ public class SplitController {
 		return hashMap;
 	}
 	
+	//@route GET
+	//@description 
+	//@access 
+	@RequestMapping(value = "/games/{gameId}/getInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getGameInfo(@PathVariable("gameId") String gameId) {
+		return gamePool.getGames().get(gameId).getInfo();
+	}
+	
 	//@route GET /games/ids
 	//@description Get all the ids of the games
 	//@access Private for testing only
