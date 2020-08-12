@@ -2,21 +2,13 @@ let gameID = '';
 //write the constants for binary NUMBERS!
 
 $(document).ready(function () {
-  //   // Get all game IDs and display them in div tag
-  //   function getGameIds() {
-  //     callAjax('http://localhost:8080/games/ids', 'GET', null, gameIdCallback);
-  //   }
-
   function gameIdCallback(response) {
     let longHTMLStr = '';
 
     for (var i = 0; i < response.length; i++) {
-      //   $('#listGameIDs').append('<p>' + response[i] + '</p>');
       longHTMLStr += '<p>' + response[i] + '</p>';
     }
-    // alert(type of response);
     $('#listGameIDs').html(longHTMLStr);
-    // document.getElementById('listGameIDs').innerHTML = response;
   }
 
   $('#req').click(function () {
@@ -76,11 +68,6 @@ $(document).ready(function () {
   }
 
   function createGameCallback(response) {
-    // alert('Game ID: ' + response.id);
-    // for()
-    // var players = [1, 2, 3];
-    // var playerArray = [];
-    // for(var i = 0; i < )
     var playerStr = '';
     var playerInfoString = '';
     var players = response.players;
@@ -144,30 +131,24 @@ $(document).ready(function () {
         '<br/>' +
         '<br/>' +
         'players: ' +
-        // playerStr +
         playerInfoString +
         '<br />' +
         response.gameInfo.availableActions
     );
     getAvailableActions(response.availableActions);
 
-    // for(var i = 0; i < response.players[])
-
-    // $('#gamePlayers').html(response.players[0].name);
-
     $('#createGame').hide();
-    // getGameIds(response);
   }
 
   function getAvailableActions(availableActionNumber) {
     if (availableActionNumber & 0b0000001) {
-      console.log('draw from discard pile');
+      console.log('Draw from discard pile.');
     }
     if (availableActionNumber & 0b0000010) {
-      console.log('Draw from the regular pile ');
+      console.log('Draw from regular pile.');
     }
     if (availableActionNumber & 0b0000100) {
-      console.log('make a match');
+      console.log('Make a match w/2 cards.');
     }
   }
 

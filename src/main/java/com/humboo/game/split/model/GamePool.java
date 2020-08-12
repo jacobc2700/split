@@ -11,15 +11,14 @@ import org.springframework.stereotype.Component;
 //@Scope("singleton")
 public class GamePool {
 	public static String test() {
-		return "game pool";
+		return "Game pool for Split game.";
 	}
 	
 	// static variable single_instance of type Singleton 
     private static GamePool game_pool = null;
     
     private static Map<String, SplitGame> games = new HashMap<>();
-  
-    // variable of type String 
+   
     public String s; 
   
     public String createNewGame(String name, String[] names) {
@@ -33,8 +32,6 @@ public class GamePool {
     	
     	return uuid.toString();
     }
-    
-//    public 
     
     public static Map<String, SplitGame> getGames() {
     	return games;
