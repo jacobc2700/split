@@ -24,7 +24,6 @@ import com.humboo.game.split.model.Suit;
 @CrossOrigin
 @RestController
 public class SplitController {
-	
 	GamePool gamePool = GamePool.getInstance();
 
 	//@route POST /games
@@ -40,34 +39,23 @@ public class SplitController {
 		hashMap.put("status", gamePool.getGames().get(id).getStatus());
 		hashMap.put("players", gamePool.getGames().get(id).getPlayers());
 		hashMap.put("deck", gamePool.getGames().get(id).getDeck());
-//		hashMap.put("cards", gamePool.getGames().get(id).getPlayers().getClass()
-		
+
+		//Players in newly created game.
 		Player[] players = gamePool.getGames().get(id).getPlayers();
-//		
-		Map<String, Object> discardMatches = new HashMap<>();
-		Map<String, Object> holdingCards = new HashMap<>();
-		
-		for(Player player:players) {
-			discardMatches.put(player.getID(), player.getMatches());
-			holdingCards.put(player.getID(), player.getHoldingCards(gamePool.getGames().get(id).getDeck()));
-		}
-		hashMap.put("PlayerMatches", discardMatches);
-		hashMap.put("PlayerHoldingCards", holdingCards);
-		
-		for(Player player:players) {
+
+		for(Player player: players) {
+			//Player info.
 			hashMap.put("PLAYER_" + player.getID(), player.getInfo(gamePool.getGames().get(id)));
 		}
 		
+		//Game info.
 		hashMap.put("gameInfo", gamePool.getGames().get(id).getInfo());
 		
-		
-		//hashMap.put("Cards", currentPlayer.getCards(gamePool.getGames().get(gameId).getDeck()));
 		
 		hashMap.put("name", gamePool.getGames().get(id).getName());
 		hashMap.put("currentCardIndex", gamePool.getGames().get(id).getCurrentCardIndex());
 		hashMap.put("playerTurn", gamePool.getGames().get(id).getCurrentPlayerTurn());
 		hashMap.put("availableActions", gamePool.getGames().get(id).getAvailableActions());
-//		current card index, player turn
 		return hashMap;
 	}
 	
@@ -107,14 +95,12 @@ public class SplitController {
 		return gamePool.getGames().get(id);
 	}
 	
-	
 	//@route GET /games/games_id/player/player_id
 	//@description Get info for one player in one game
 	//@access Public
 	@RequestMapping(value = "/games/{gameId}/player/{playerId}", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getPlayerInfo(@PathVariable("gameId") String gameId, @PathVariable("playerId") String playerId) {
-//		return gamePool.getGames().get(gameId).getPlayerByID(playerId);
 		Player currentPlayer = gamePool.getGames().get(gameId).getPlayerByID(playerId);
 		
 		Map<String, Object> hashMap = new HashMap<>();
@@ -125,9 +111,6 @@ public class SplitController {
 		hashMap.put("isTurn", currentPlayer.isTurn());
 		hashMap.put("scoreSheet", currentPlayer.getScoreSheet());
 		
-		
-//		hashMap.put
-		//, isTurn, scoreSheet
 		return hashMap;
 	}
 }

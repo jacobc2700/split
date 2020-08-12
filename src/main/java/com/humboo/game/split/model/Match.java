@@ -1,15 +1,11 @@
 package com.humboo.game.split.model;
 
-//Information about matches:
+//Hearts/Diamonds = Red
+//Spades/Clubs = Black
 
-//Hearts/diamonds = red
-//Spades/clubs = black
-
-//Weak: same rank, different color
-
-//Strong: same rank, same color
-
-//Perfect: same rank, same suit
+//Weak: same rank, different color.
+//Strong: same rank, same color.
+//Perfect: same rank, same suit.
 
 public class Match {
 	private Card card1;
@@ -28,6 +24,7 @@ public class Match {
 		}
 	}
 	
+	//Get the type of match (perfect, strong, weak).
 	public String getType() {
 		if(card1.getRank() == card2.getRank() && card1.getSuit().equals(card2.getSuit())) {
 			return "Perfect";

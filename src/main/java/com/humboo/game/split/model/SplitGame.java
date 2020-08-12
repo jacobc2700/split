@@ -1,6 +1,7 @@
 package com.humboo.game.split.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Stack;
 
@@ -50,6 +51,8 @@ public class SplitGame {
 			//draw from discard or draw from regular pile
 			this.availableActions = DRAW_FROM_DISCARD_PILE + DRAW_FROM_REGULAR_PILE;
 			discardPile = new Stack<>();
+//			discardPile.add(20);
+//			discardPile.add(21);
 		}
 	}
 	
@@ -58,11 +61,27 @@ public class SplitGame {
 		
 		hashMap.put("name", name);
 		hashMap.put("players", players);
+		hashMap.put("numberOfPlayers", numberOfPlayers);
+		hashMap.put("currentCardIndex", currentCardIndex);
 		hashMap.put("deck", deck);
+		hashMap.put("playerTurn", playerTurn);
 		hashMap.put("players", players);
+		hashMap.put("status", status);
+		hashMap.put("discardPile", getDiscardPile(deck));
 		hashMap.put("availableActions", availableActions);
 		
 		return hashMap;
+	}
+	
+	public Card[] getDiscardPile(Deck deck) {
+		Card[] discardCards = new Card[discardPile.size()];
+		
+		int j = 0;
+		for(Integer i: discardPile) {
+			discardCards[j] = deck.getCards()[i];
+			j++;
+		}
+		return discardCards;
 	}
 	
 	public int getAvailableActions() {
