@@ -51,10 +51,17 @@ public class SplitController {
 			discardMatches.put(player.getID(), player.getMatches());
 			holdingCards.put(player.getID(), player.getHoldingCards(gamePool.getGames().get(id).getDeck()));
 		}
-		hashMap.put("Player matches", discardMatches);
-		hashMap.put("Player holding chards", holdingCards);
+		hashMap.put("PlayerMatches", discardMatches);
+		hashMap.put("PlayerHoldingCards", holdingCards);
+		
+		for(Player player:players) {
+			hashMap.put("PLAYER_" + player.getID(), player.getInfo(gamePool.getGames().get(id)));
+		}
+		
+		hashMap.put("gameInfo", gamePool.getGames().get(id).getInfo());
 		
 		
+		//hashMap.put("Cards", currentPlayer.getCards(gamePool.getGames().get(gameId).getDeck()));
 		
 		hashMap.put("name", gamePool.getGames().get(id).getName());
 		hashMap.put("currentCardIndex", gamePool.getGames().get(id).getCurrentCardIndex());
@@ -100,6 +107,7 @@ public class SplitController {
 	public Map<String, Object> getPlayerInfo(@PathVariable("gameId") String gameId, @PathVariable("playerId") String playerId) {
 //		return gamePool.getGames().get(gameId).getPlayerByID(playerId);
 		Player currentPlayer = gamePool.getGames().get(gameId).getPlayerByID(playerId);
+		
 		Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("name", currentPlayer.getName());
 		hashMap.put("id", currentPlayer.getID());
@@ -107,6 +115,8 @@ public class SplitController {
 		hashMap.put("holdingCardIndexes", currentPlayer.getHoldingCardIndexes());
 		hashMap.put("isTurn", currentPlayer.isTurn());
 		hashMap.put("scoreSheet", currentPlayer.getScoreSheet());
+		
+		
 //		hashMap.put
 		//, isTurn, scoreSheet
 		return hashMap;

@@ -44,6 +44,8 @@ public class Player {
 		return matches;
 	}
 	
+//	public Map<String, Object>
+	
 	//show everything for the player in a hashmap...
 	public Map<String, Object> getInfo(SplitGame game) {
 		Map<String, Object> hashMap = new HashMap<>();
@@ -51,18 +53,29 @@ public class Player {
 //		Map<String, Object> matches = new HashMap<>();
 		
 		for(int i = 0; i < game.getPlayers().length; i++) {
-			hashMap.put("Matches for player " + game.getPlayers()[i].name, game.getPlayers()[i].getMatches());
+			hashMap.put("matchesFor_PLAYER_" + game.getPlayers()[i].id, game.getPlayers()[i].getMatches());
 		}
 		
-		hashMap.put("Cards", holdingCardIndexes);
-		
-		hashMap.put("discardPile", game.getDiscardPile());
+		hashMap.put("name", this.getName());
+		hashMap.put("id", this.getID());
+		hashMap.put("holdingCards", this.getCards(game.getDeck()));
+		hashMap.put("matches", this.getMatches());
+		hashMap.put("scoreSheet", this.getScoreSheet());
 		
 		return hashMap;
 	}
 	
 	public String getName() {
 		return name;
+	}
+	
+	public ArrayList<Card> getCards(Deck deck) {
+		ArrayList<Card> cards = new ArrayList<>();
+		
+		for(int i = 0; i < holdingCardIndexes.size(); i++) {
+			cards.add(deck.getCards()[holdingCardIndexes.get(i)]);
+		}
+		return cards;
 	}
 	
 	public ArrayList<Integer> getHoldingCardIndexes() {
@@ -80,17 +93,17 @@ public class Player {
 		}
 	}
 	
-	public Map<String, Object> getHoldingCards(Deck deck) {
+	public Card[] getHoldingCards(Deck deck) {
 		Map<String, Object> hashMap = new HashMap<>();
 		
 		
 		Card[] cards = new Card[holdingCardIndexes.size()];
 		
 		for(int i = 0; i < holdingCardIndexes.size(); i++) {
-//			cards[i] = deck.getCards()[i];
-			hashMap.put(Integer.toString(i), deck.getCards()[i]);
+			cards[i] = deck.getCards()[i];
+//			hashMap.put(Integer.toString(i), deck.getCards()[i]);
 		}
-		return hashMap;
+		return cards;
 	}
 	
 	//Function that lists all the possible matches made from holding cards

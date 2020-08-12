@@ -82,35 +82,72 @@ $(document).ready(function () {
     // var playerArray = [];
     // for(var i = 0; i < )
     var playerStr = '';
+    var playerInfoString = '';
     var players = response.players;
 
     for (var i = 0; i < players.length; i++) {
+      playerInfoString +=
+        '<br/> name: ' +
+        response['PLAYER_' + players[i].id].name +
+        '<br/> id: ' +
+        response['PLAYER_' + players[i].id].id +
+        '<br/> cards: ' +
+        response['PLAYER_' + players[i].id].holdingCards.map((item) => {
+          var str = [item.rank, item.suit].join(' ');
+          return str;
+        }) +
+        '<br/> matches: ' +
+        response['PLAYER_' + players[i].id].matches +
+        '<br/> scoresheet: ' +
+        response['PLAYER_' + players[i].id].scoreSheet;
+      ('<br/>');
+    }
+
+    for (var i = 0; i < players.length; i++) {
       playerStr +=
-        '<br/> ' +
+        '<br/> name: ' +
         players[i].name +
-        '<br/> ' +
+        '<br/> id: ' +
         players[i].id +
-        '<br/> ' +
-        players[i].holdingCardIndexes;
+        '<br/> card indexes: ' +
+        players[i].holdingCardIndexes +
+        '<br/>';
     }
 
     $('#listGameID').html(
-      'Game ID: ' +
+      'Game ID:' +
         response.id +
+        '<br/>' +
+        '<br/>' +
         'Status: ' +
         response.status +
+        '<br/>' +
+        '<br/>' +
         ' how many players? ' +
         response.players.length +
+        '<br/>' +
+        '<br/>' +
         ' name of game:' +
         response.name +
+        '<br/>' +
+        '<br/>' +
         'current card index: ' +
         response.currentCardIndex +
+        '<br/>' +
+        '<br/>' +
         'available options: ' +
         response.availableActions +
+        '<br/>' +
+        '<br/>' +
         'Player turn: ' +
         response.playerTurn +
+        '<br/>' +
+        '<br/>' +
         'players: ' +
-        playerStr
+        // playerStr +
+        playerInfoString +
+        '<br />' +
+        response.gameInfo.availableActions
     );
     getAvailableActions(response.availableActions);
 
