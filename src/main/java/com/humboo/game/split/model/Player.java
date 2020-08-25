@@ -83,8 +83,14 @@ public class Player {
 	}
 	
 	//add new card to holding cards
-	public void drawCard(int cardIndex) {
+	//draw card from regular pile
+	public void drawRegularCard(int cardIndex) {
 		holdingCardIndexes.add(cardIndex);
+	}
+	
+	//draw the top N number of cards from the stack
+	public void drawDiscardPileCard(int numberOfCards) {
+		
 	}
 	
 	public void printCards(Deck deck) {
@@ -117,26 +123,4 @@ public class Player {
 			}
 		}
 	}
-	
-//	public void promptTurn() {
-//		Scanner sc = new Scanner(System.in);
-//		isTurn = !isTurn;
-//		while(isTurn) {
-//			System.out.println("Your turn, " + name);
-//			System.out.println("Choices for this turn, press the number please:");
-//			
-//		}
-//		
-//	}
-	
-	//Options for user each round:
-	
-	//draw from discard pile: you pick a number which is how many you want from the end of
-		//the stack
-	
-	//draw from the holdingCardIndexes
-	
-	//user's moves is still going until they want to stop
-	
-	
 }

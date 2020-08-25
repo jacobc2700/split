@@ -89,6 +89,7 @@ $(document).ready(function () {
         '<br/>'
     );
 
+    //Display player info.
     $('#gamePlayers').html(playerInfoString);
   };
 

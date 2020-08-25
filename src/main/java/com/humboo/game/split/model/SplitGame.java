@@ -143,7 +143,7 @@ public class SplitGame {
 		//Give nine cards to all the players
 		for(int i = 0; i < numberOfPlayers; i++) {
 			for(int j = 0; j < 9; j++) {
-				players[i].drawCard(currentCardIndex);
+				players[i].drawRegularCard(currentCardIndex);
 				currentCardIndex++;
 			}
 		}
