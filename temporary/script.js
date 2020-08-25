@@ -1,54 +1,9 @@
+//Global vars.
 let gameID = '';
+let players = '';
 //write the constants for binary NUMBERS!
 
 $(document).ready(function () {
-  function gameIdCallback(response) {
-    let longHTMLStr = '';
-
-    for (var i = 0; i < response.length; i++) {
-      longHTMLStr += '<p>' + response[i] + '</p>';
-    }
-    $('#listGameIDs').html(longHTMLStr);
-  }
-
-  $('#req').click(function () {
-    alert('click');
-    $.ajax({
-      url: 'http://localhost:8080/games',
-      type: 'GET',
-      crossDomain: true,
-      async: false,
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      jsonpCallback: 'myJsonMethod',
-      success: function (json) {
-        alert(json);
-      },
-      error: function (e) {
-        console.log(e);
-      },
-    });
-  });
-
-  $('#req').click(function () {
-    alert('click');
-    $.ajax({
-      url: 'http://localhost:8080/games',
-      type: 'POST',
-      crossDomain: true,
-      async: false,
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      jsonpCallback: 'myJsonMethod',
-      success: function (json) {
-        alert(json);
-      },
-      error: function (e) {
-        console.log(e);
-      },
-    });
-  });
-
   /* Create a new game */
   $('#createGame').click(function () {
     callAjax(
@@ -67,42 +22,44 @@ $(document).ready(function () {
     return JSON.stringify(gameForm);
   }
 
+  //Runs when a new game is created.
   function createGameCallback(response) {
-    var playerStr = '';
+    getAvailableActions(response.availableActions);
+
+    //Display game and player info in divs.
+    displayInfo(response);
+
+    //Hide create new game button.
+    $('#createGame').hide();
+  }
+
+  //Display game and player info.
+  const displayInfo = (response) => {
+    players = response.players;
+
     var playerInfoString = '';
-    var players = response.players;
 
     for (var i = 0; i < players.length; i++) {
       playerInfoString +=
-        '<br/> name: ' +
+        '<br/> Name: ' +
         response['PLAYER_' + players[i].id].name +
-        '<br/> id: ' +
+        '<br/> ID: ' +
         response['PLAYER_' + players[i].id].id +
-        '<br/> cards: ' +
+        '<br/> Cards: ' +
         response['PLAYER_' + players[i].id].holdingCards.map((item) => {
           var str = [item.rank, item.suit].join(' ');
           return str;
         }) +
-        '<br/> matches: ' +
+        '<br/> Matches: ' +
         response['PLAYER_' + players[i].id].matches +
-        '<br/> scoresheet: ' +
-        response['PLAYER_' + players[i].id].scoreSheet;
-      ('<br/>');
+        '<br/> Scoresheet: ' +
+        response['PLAYER_' + players[i].id].scoreSheet +
+        '<br/>------------------------------------------------------------------------------------------';
     }
 
-    for (var i = 0; i < players.length; i++) {
-      playerStr +=
-        '<br/> name: ' +
-        players[i].name +
-        '<br/> id: ' +
-        players[i].id +
-        '<br/> card indexes: ' +
-        players[i].holdingCardIndexes +
-        '<br/>';
-    }
-
+    //Display game info.
     $('#listGameID').html(
-      'Game ID:' +
+      'Game ID: ' +
         response.id +
         '<br/>' +
         '<br/>' +
@@ -110,35 +67,30 @@ $(document).ready(function () {
         response.status +
         '<br/>' +
         '<br/>' +
-        ' how many players? ' +
+        ' Number of Players: ' +
         response.players.length +
         '<br/>' +
         '<br/>' +
-        ' name of game:' +
+        ' Game Name: ' +
         response.name +
         '<br/>' +
         '<br/>' +
-        'current card index: ' +
+        'Current Card Index: ' +
         response.currentCardIndex +
         '<br/>' +
         '<br/>' +
-        'available options: ' +
+        'Available Actions: ' +
         response.availableActions +
         '<br/>' +
         '<br/>' +
-        'Player turn: ' +
+        'Player Turn ID: ' +
         response.playerTurn +
         '<br/>' +
-        '<br/>' +
-        'players: ' +
-        playerInfoString +
-        '<br />' +
-        response.gameInfo.availableActions
+        '<br/>'
     );
-    getAvailableActions(response.availableActions);
 
-    $('#createGame').hide();
-  }
+    $('#gamePlayers').html(playerInfoString);
+  };
 
   function getAvailableActions(availableActionNumber) {
     if (availableActionNumber & 0b0000001) {
