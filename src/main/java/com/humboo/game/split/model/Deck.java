@@ -5,11 +5,9 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Deck {
-	//How to keep 104 default cards in a deck, array?
-	//Card order will be:
-	//CLUBS, DIAMONDS, SPADES, HEARTS (same order as enum)
-	//1, 2, 3... 13 where each rank pairs with the enum (two times for each)
-			
+	//104 cards in an array, randomly shuffled.
+	//Card order will be: CLUBS, DIAMONDS, SPADES, HEARTS.
+	//Number order will be: 1, 2, 3, ..., 11, 12, 13.
 	private Card[] cards;
 	
 	public Deck() {
@@ -27,23 +25,23 @@ public class Deck {
 		}
 	}
 	
+	//Getter for cards.
+	//No need for any setters.
 	public Card[] getCards() {
 		return this.cards;
 	}
 
-	// Implementing Fisher–Yates shuffle O(n)
-	public void shuffle()
-	{
-	  Random rnd = ThreadLocalRandom.current();
-	  for (int i = cards.length - 1; i > 0; i--)
-	  {
-	    int index = rnd.nextInt(i + 1);
-	    // Simple swap
+	//Fisher-Yates Shuffle: O(n)
+	public void shuffle() {
+	  Random random = ThreadLocalRandom.current();
+	  
+	  for (int i = cards.length - 1; i > 0; i--) {
+	    int index = random.nextInt(i + 1);
+	    
+	    //Simple swap.
 	    Card a = cards[index];
 	    cards[index] = cards[i];
 	    cards[i] = a;
 	  }
 	}
-	
-	
 }

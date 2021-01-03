@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <!-- Create new game -->
+    <div style="background-color: red; height: 30px;">
+      Name: <input id="gameName" type="text" value="MyGameName" />
+      Players(comma separated.. no ''):
+      <input id="players" type="text" value="David,Judy" />
+    </div>
+
+    <!-- Game -->
+    <h1>Game Information</h1>
+    <div id="listGameID"></div>
+
+    <!-- Players -->
+    <h1>Player Information</h1>
+    <div id="gamePlayers"></div>
+    <button id="createGame">Create Game</button>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+</html>
